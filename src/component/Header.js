@@ -17,7 +17,7 @@ function Header() {
   };
   
   const [feed, setFeed] = useState(initialStyle);
-  const [n, setN] = useState(0);
+  // const [n, setN] = useState(0);
 
   const fnClick = () =>{
     setFeed({

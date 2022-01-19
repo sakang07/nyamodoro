@@ -5,8 +5,8 @@ import React from 'react';
 
 import '../style/Content.scss';
 import defaultCat from '../img/cat_default.png';
-import cryCat from '../img/cat_cry.png';
-import sleepCat from '../img/cat_sleep.png';
+// import cryCat from '../img/cat_cry.png';
+// import sleepCat from '../img/cat_sleep.png';
 
 function Content() {
   return (
