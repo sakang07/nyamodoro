@@ -1,9 +1,9 @@
 // App.js
 // 220119
 
-import Header from './component/Header';
-import Content from './component/Content';
-import Footer from './component/Footer';
+import Header from './components/Header';
+import Content from './components/Content';
+import Footer from './components/Footer';
 
 import './App.scss';
 
