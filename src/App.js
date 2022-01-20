@@ -5,15 +5,16 @@ import Header from './component/Header';
 import Content from './component/Content';
 import Footer from './component/Footer';
 
-import './App.css';
+import './App.scss';
 
 function App() {
   return (
     <div className="App">
-      <Header />
-      <Content />
-      <Footer />
-      
+      <div className="container">
+        <Header />
+        <Content />
+        <Footer />
+      </div>
     </div>
   );
 }
