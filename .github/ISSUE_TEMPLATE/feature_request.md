@@ -11,7 +11,7 @@ assignees: sakang07
 설명 작성
 
 ## Todo
-[] todo1
-[] todo2
+- [ ] todo1
+- [ ] todo2
 
 ## Etc
