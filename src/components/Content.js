@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
+import useSound from "use-sound";
 import CatFace from "./CatFace";
 import Time from "./Time";
 import CycleCount from "./CycleCount";
-
 import "../style/Content.scss";
+
 import defaultCatImg from "../assets/cat_default.png";
 import cryCatImg from "../assets/cat_cry.png";
 import sleepCatImg from "../assets/cat_sleep.png";
+import meowSound from "../assets/meow.ogg";
 
 function Content() {
   const [catFace, setCatFace] = useState(defaultCatImg);
@@ -16,12 +18,15 @@ function Content() {
   const [min, setMin] = useState(0);
   const [sec, setSec] = useState(0);
   const [cycle, setCycle] = useState(0);
+  const [playAlarm, { stop }] = useSound(meowSound);
 
   const cryCat = () => {
     setCatFace(cryCatImg);
+    playAlarm();
     setTimeout(() => {
       setCatFace(defaultCatImg);
-    }, 500);
+      stop();
+    }, 1000);
   };
 
   useEffect(() => {
@@ -30,7 +35,7 @@ function Content() {
       if (totalSec > 0) {
         setTimeout(() => {
           setTotalSec(totalSec - 1);
-        }, 1);
+        }, 1000);
         setMin(parseInt(totalSec / 60));
         setSec(parseInt(totalSec % 60));
       } else {
@@ -65,7 +70,12 @@ function Content() {
 
   return (
     <section id='contentBox'>
-      <CatFace catState={catFace} onClick={startTimer} onDrag={snoozeTimer} />
+      <CatFace
+        catFaceState={catFace}
+        timerState={isRun}
+        onClick={startTimer}
+        onDrag={snoozeTimer}
+      />
       <Time minNum={min} secNum={sec} />
       <CycleCount cycleNum={cycle} />
     </section>
