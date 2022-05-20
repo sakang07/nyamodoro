@@ -13,6 +13,7 @@ import meowSound from "../assets/meow.ogg";
 function Content() {
   const [catFace, setCatFace] = useState(defaultCatImg);
   const [isRun, setIsRun] = useState(false);
+  const [isRest, setIsRest] = useState(false); // 휴식시간 여부 상태
 
   const [totalSec, setTotalSec] = useState(0);
   const [min, setMin] = useState(0);
@@ -41,15 +42,26 @@ function Content() {
       } else {
         // 타이머가 0이 되면 초기화
         setIsRun(false);
+        setIsRest(false);
         setMin(0);
         setSec(0);
         setCycle(cycle + 1);
         cryCat();
       }
     }
-  }, [isRun, totalSec, cycle]);
+  }, [isRun, totalSec]);
 
-  const startTimer = () => {
+  useEffect(() => {
+    // 타이머가 5분 남았을 때 휴식상태로 전환
+    if (min === 5) {
+      if (!isRest) {
+        setIsRest(true);
+        cryCat();
+      }
+    }
+  }, [min]);
+
+  const handleStartTimer = () => {
     // 타이머가 작동하지 않고 있을 때
     if (!isRun) {
       setIsRun(true); // 타이머의 상태를 작동중으로 변경
@@ -60,7 +72,7 @@ function Content() {
     }
   };
 
-  const snoozeTimer = () => {
+  const handleSnoozeTimer = () => {
     if (isRun) {
       // 타이머가 작동중일 때
       setIsRun(false);
@@ -73,10 +85,10 @@ function Content() {
       <CatFace
         catFaceState={catFace}
         timerState={isRun}
-        onClick={startTimer}
-        onDrag={snoozeTimer}
+        onClick={handleStartTimer}
+        onDrag={handleSnoozeTimer}
       />
-      <Time minNum={min} secNum={sec} />
+      <Time restState={isRest} minNum={min} secNum={sec} />
       <CycleCount cycleNum={cycle} />
     </section>
   );
