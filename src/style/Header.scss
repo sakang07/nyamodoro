@@ -1,17 +1,24 @@
 // Header.scss
 // 220119
 
-@import '../style/common/mixin', '../style/common/variable';
+@import "../style/common/mixin", "../style/common/variable";
 
 #headBox {
-  display: flex; justify-content: space-between; align-items: center;
-  width: 100%; height: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: auto;
   & > div {
-    display: flex; flex-direction: column; justify-content: center;
-    width: auto; height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: auto;
+    height: auto;
 
     button {
-      width: 100%; height: auto; 
+      width: 100%;
+      height: auto;
       margin: auto;
       background-size: contain;
       background-repeat: no-repeat;
@@ -19,18 +26,19 @@
     }
     span {
       display: block;
-      width: auto; height: auto; min-width: 80px;
+      width: auto;
+      height: auto;
+      min-width: 80px;
       padding-top: 50px;
       text-align: center;
-      @include font(16)
+      @include font(16);
     }
   }
 
   // .btn_area {}
   .help_area button {
-    background-image: url('../img/help.png');
+    background-image: url("../assets/help.png");
   }
-
 }
 
 /* ======================= handHelds ======================= */

@@ -1,16 +1,16 @@
 // App.js
 // 220119
 
-import Header from './component/Header';
-import Content from './component/Content';
-import Footer from './component/Footer';
+import Header from "./components/Header";
+import Content from "./components/Content";
+import Footer from "./components/Footer";
 
-import './App.scss';
+import "./App.scss";
 
 function App() {
   return (
-    <div className="App">
-      <div className="container">
+    <div className='App'>
+      <div className='container'>
         <Header />
         <Content />
         <Footer />

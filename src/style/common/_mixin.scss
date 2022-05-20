@@ -4,184 +4,243 @@
 // unit
 $baseSize: 16;
 @mixin pxRem($name, $unit) {
-	#{$name}: #{$unit} + px;
-	#{$name}: math.div($unit, $baseSize) + rem; // math 기능을 써야 에러가 나지 않는다.
+  #{$name}: #{$unit} + px;
+  #{$name}: math.div($unit, $baseSize) + rem; // math 기능을 써야 에러가 나지 않는다.
 }
 
 @mixin vw($unit, $val, $deviceWidth) {
-	@include pxRem($unit, $val);
-	#{$unit}: math.div($val, $deviceWidth) * 100 + vw;
+  @include pxRem($unit, $val);
+  #{$unit}: math.div($val, $deviceWidth) * 100 + vw;
 }
 
 // font
 @mixin fontSet {
-	font-family: $font_family_en, $font_family_kr, $font_family_common;
+  font-family: $font_family_en, $font_family_kr, $font_family_common;
 }
 
-@mixin font ($size, $weight:false, $line:false){
-	@include pxRem(font-size, $size);
-	@if($weight) {
-		font-weight: $weight;
-	}
-	@if($line) {
-		line-height: $line;
-	}
-	@content;
+@mixin font($size, $weight: false, $line: false) {
+  @include pxRem(font-size, $size);
+  @if ($weight) {
+    font-weight: $weight;
+  }
+  @if ($line) {
+    line-height: $line;
+  }
+  @content;
 }
-
 
 // image
-$imgPath: '/img/';
+$imgPath: "/assets/";
 
 // @mixin img와 @mixin full은 연결되어 있다(full 안에 img가 들어가 있음)
 // 먼저 img를 정의한 뒤에 img를 포함하고 있는 full을 정의해야 한다
-@mixin img($file, $size:initial, $position:50% 50%, $repeat:no-repeat) {
-	background : {
-		image: url(#{$imgPath}#{$file});
-		size: $size;
-		position: $position;
-		repeat: $repeat;
-	}
-	& > span {
-		display: block;
-		position: absolute; z-index: -1; clip: rect(0 0 0 0);
-		width: 0; height: 0; overflow: hidden;
-	}
-	@content;
+@mixin img($file, $size: initial, $position: 50% 50%, $repeat: no-repeat) {
+  background : {
+    image: url(#{$imgPath}#{$file});
+    size: $size;
+    position: $position;
+    repeat: $repeat;
+  }
+  & > span {
+    display: block;
+    position: absolute;
+    z-index: -1;
+    clip: rect(0 0 0 0);
+    width: 0;
+    height: 0;
+    overflow: hidden;
+  }
+  @content;
 }
-@mixin full($file:false, $size:initial, $position:50% 50%, $repeat:no-repeat) {
-	display: block; width: 100%; height: 100%;
-	// $img가 초기값인 false일 경우에는 if문이 처리되지 않음
-	@if ($file) { 
-		@include img($file, $size, $position, $repeat) {
-			@content;
-		}
-	}
+@mixin full($file: false, $size: initial, $position: 50% 50%, $repeat: no-repeat) {
+  display: block;
+  width: 100%;
+  height: 100%;
+  // $img가 초기값인 false일 경우에는 if문이 처리되지 않음
+  @if ($file) {
+    @include img($file, $size, $position, $repeat) {
+      @content;
+    }
+  }
 }
 
 // hover
 @mixin hoverScl($scale: 1.2, $ms: 300) {
-	&:hover {
-		display: block;
-		transform: scale($scale);
-		transition: all $ms + ms ease;
-		@content;
-	}
+  &:hover {
+    display: block;
+    transform: scale($scale);
+    transition: all $ms + ms ease;
+    @content;
+  }
 }
 
-@mixin hoverBold($color:$color_black_02) {
-	&:hover { font-weight: $font_weight_bold; color: $color; }
+@mixin hoverBold($color: $color_black_02) {
+  &:hover {
+    font-weight: $font_weight_bold;
+    color: $color;
+  }
 }
 
-@mixin hoverLine($color:$color_gray_04) {
-	& {position: relative;}
-	&:hover { font-weight: $font_weight_bold; color: $color_black_02; }
-	&::before {
-		content: '';
-		position: absolute;	bottom: -4px; left: 0; 
-		width: 100%; height: 1px; margin: auto;
-		background: $color;
-		display: block;
-		transform-origin: right top;
-		transform: scale(0, 1);
-		transition: transform 400ms cubic-bezier(1, 0, 0, 1);
-	}
-	&:hover::before {
-		transform-origin: left top;
-		transform: scale(1, 1);
-		@content;
-	}		
+@mixin hoverLine($color: $color_gray_04) {
+  & {
+    position: relative;
+  }
+  &:hover {
+    font-weight: $font_weight_bold;
+    color: $color_black_02;
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    margin: auto;
+    background: $color;
+    display: block;
+    transform-origin: right top;
+    transform: scale(0, 1);
+    transition: transform 400ms cubic-bezier(1, 0, 0, 1);
+  }
+  &:hover::before {
+    transform-origin: left top;
+    transform: scale(1, 1);
+    @content;
+  }
 }
 
 // main
 // $fontSize : mob 28 / pc: 40
-@mixin mainTitle ($align: center, $fontSize: 28) {
-	display: flex; flex-direction: column-reverse;
+@mixin mainTitle($align: center, $fontSize: 28) {
+  display: flex;
+  flex-direction: column-reverse;
   padding-bottom: 50px;
-	text-align: $align;
-	h2 { margin-top: 4px; @include font($fontSize, $font_weight_bold){ color: $color_black_02; text-transform: capitalize; } }
-	p { @include font(16, $font_weight_bold){ color: $color_gray_03}}
+  text-align: $align;
+  h2 {
+    margin-top: 4px;
+    @include font($fontSize, $font_weight_bold) {
+      color: $color_black_02;
+      text-transform: capitalize;
+    }
+  }
+  p {
+    @include font(16, $font_weight_bold) {
+      color: $color_gray_03;
+    }
+  }
 } // @mixin mainTitle
 
 // btn
-@mixin btnSmall($bgCo: $color_white, $color: $color_black_02, $font:1rem) {
-	width: 8.75rem; height: 3rem;
-	border: $line_01;
-	background-color: $bgCo;
-	font: { weight: $font_weight_bold; size: $font }
-	text-align: center; color: $color; line-height: 3rem;
-	& > a { @include full; }
+@mixin btnSmall($bgCo: $color_white, $color: $color_black_02, $font: 1rem) {
+  width: 8.75rem;
+  height: 3rem;
+  border: $line_01;
+  background-color: $bgCo;
+  font: {
+    weight: $font_weight_bold;
+    size: $font;
+  }
+  text-align: center;
+  color: $color;
+  line-height: 3rem;
+  & > a {
+    @include full;
+  }
 }
 
-@mixin btnBig ($bgCo: $color_white, $color: $color_black_02, $font:1rem) {
-	min-width: 16.25rem; height: 3.5rem;
-	border: $line_01;
-	background-color: $bgCo;
-	font: { weight: $font_weight_bold; size: $font }
-	text-align: center; color: $color; line-height: 3.5rem;
-	& > a { @include full; }
+@mixin btnBig($bgCo: $color_white, $color: $color_black_02, $font: 1rem) {
+  min-width: 16.25rem;
+  height: 3.5rem;
+  border: $line_01;
+  background-color: $bgCo;
+  font: {
+    weight: $font_weight_bold;
+    size: $font;
+  }
+  text-align: center;
+  color: $color;
+  line-height: 3.5rem;
+  & > a {
+    @include full;
+  }
 }
 
-@mixin btnRound ($bgColor: $color_white, $bdColor: $color_gray_02, $color: $color_black_02) {
-	width: auto; height: 2.375rem;
-	margin: auto; margin-top: 3.125rem;
-	border-radius: 2.375rem; border: 0.0625rem solid $bdColor;;
-	font: { size:1rem; }
-	text-align: center; color: $color; line-height: 2.375rem;
-	background-color: $bgColor;
-	& > a { display: block; width: 100%; height: 100%; }
-	& > button { font-size: inherit; }
+@mixin btnRound($bgColor: $color_white, $bdColor: $color_gray_02, $color: $color_black_02) {
+  width: auto;
+  height: 2.375rem;
+  margin: auto;
+  margin-top: 3.125rem;
+  border-radius: 2.375rem;
+  border: 0.0625rem solid $bdColor;
+  font: {
+    size: 1rem;
+  }
+  text-align: center;
+  color: $color;
+  line-height: 2.375rem;
+  background-color: $bgColor;
+  & > a {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  & > button {
+    font-size: inherit;
+  }
 }
 
 // 'btn_next2.png' / 'btn_prev2.png'
-@mixin btnCircle($file: 'btn_next2.png') {
-	width: 3.75rem; height: 3.75rem;
-	border-radius: 100%; box-shadow: 0.1875rem 0.25rem 0.625rem rgba($color_black_02, 0.15);
-	background-color: $color_white;
-	@include img($file, 16px auto);
+@mixin btnCircle($file: "btn_next2.png") {
+  width: 3.75rem;
+  height: 3.75rem;
+  border-radius: 100%;
+  box-shadow: 0.1875rem 0.25rem 0.625rem rgba($color_black_02, 0.15);
+  background-color: $color_white;
+  @include img($file, 16px auto);
 }
 
-@mixin btnSquare($file: 'btn_next2.png') {
-	width: 3.75rem; height: 3.75rem;
-	box-shadow: 0.1875rem 0.25rem 0.625rem rgba($color_black_02, 0.15);
-	background-color: $color_white;
-	@include img($file, 16px auto);
+@mixin btnSquare($file: "btn_next2.png") {
+  width: 3.75rem;
+  height: 3.75rem;
+  box-shadow: 0.1875rem 0.25rem 0.625rem rgba($color_black_02, 0.15);
+  background-color: $color_white;
+  @include img($file, 16px auto);
 }
-
 
 // @media query --------------------------------------
-$mobile : 320px;
-$tablet : 600px;
-$laptop : 1024px;
-$pc:1440px;
+$mobile: 320px;
+$tablet: 600px;
+$laptop: 1024px;
+$pc: 1440px;
 
 @mixin mobile() {
-	@media all and (max-width: #{$tablet - 1}) {
-		@content;	
-	}
+  @media all and (max-width: #{$tablet - 1}) {
+    @content;
+  }
 }
 @mixin tablet() {
-	@media all and (min-width: $tablet) and (max-width: #{$laptop - 1}) {
-		@content;
-	}
+  @media all and (min-width: $tablet) and (max-width: #{$laptop - 1}) {
+    @content;
+  }
 }
 @mixin handhelds() {
-	@media all and (max-width: #{$laptop - 1}) {
-		@content;
-	}
+  @media all and (max-width: #{$laptop - 1}) {
+    @content;
+  }
 }
 @mixin laptop() {
-	@media all and (min-width: $laptop) and (max-width: #{$pc - 1}) {
-		@content;
-	}
+  @media all and (min-width: $laptop) and (max-width: #{$pc - 1}) {
+    @content;
+  }
 }
 @mixin desktop() {
-	@media all and (min-width: $laptop) {
-		@content;
-	}
+  @media all and (min-width: $laptop) {
+    @content;
+  }
 }
 @mixin pc() {
-	@media all and (min-width: $pc) {
-		@content;
-	}
+  @media all and (min-width: $pc) {
+    @content;
+  }
 }
