@@ -1,14 +1,12 @@
-// Footer.js
-// 220119
-
-import React from 'react'
+import React from "react";
+import "../style/Footer.scss";
 
 function Footer() {
   return (
-    <div>
-      
-    </div>
-  )
+    <footer id='footBox'>
+      <p>© 2022 SA K</p>
+    </footer>
+  );
 }
 
-export default Footer
+export default Footer;

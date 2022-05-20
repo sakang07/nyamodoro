@@ -1,9 +1,6 @@
-// Header.js
-// 220119
-
 import React, { useState } from "react";
-
 import "../style/Header.scss";
+
 import onImg from "../assets/on.png";
 import offImg from "../assets/off.png";
 
