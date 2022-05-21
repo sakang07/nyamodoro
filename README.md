@@ -1,70 +1,32 @@
-# Getting Started with Create React App
+# Nyamodoro Timer 🐈‍⬛
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![프로젝트 프리뷰1](/public/assets/demo1.gif)
 
-## Available Scripts
+제가 키우는 고양이와 참여하고 있는 뽀모도로 스터디에서 아이디어를 얻어 만든 뽀모도로 타이머입니다. React의 기본 작동 원리를 습득하기 위해 간단히 기획해 보았으며, state의 개념을 이해하고 컴포넌트의 작성법을 연습할 수 있었습니다.
 
-In the project directory, you can run:
+<br />
 
-### `npm start`
+## Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+|                                                      JavaScript                                                       |                                                      React                                                       |                                                      SCSS                                                       |                                                      Github                                                       |
+| :-------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------: |
+| ![JavaScript](https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1567008394/noticon/ohybolu4ensol1gzqas1.png) | ![React](https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1566557331/noticon/d5hqar2idkoefh6fjtpu.png) | ![SCSS](https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1566911998/noticon/pgp6gfml2syj2xujx5qp.png) | ![Github](https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1629972215/noticon/vgvbhxae6jrvqpcnu0vb.png) |
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<br />
 
-### `npm test`
+## Function Guide
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![프로젝트 프리뷰2](/public/assets/demo2.gif)
 
-### `npm run build`
+- 고양이를 클릭해서 먹이를 주면 30분의 타이머를 시작합니다.
+- 집중 시간인 25분과 휴식 시간인 5분이 끝날 때 울음소리를 내서 알려 줍니다.
+- 작동 도중에 타이머를 일시정지하려면 고양이를 마우스 드래그로 쓰다듬어 줍니다. 다시 작동하려면 고양이를 클릭해서 깨웁니다.
+- 30분의 한 사이클을 마치면 고양이가 사냥한 물건을 한 개씩 주워 옵니다.
+- 자동 급식기와 도움말 기능은 아직 미구현입니다...
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<br />
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Copyright
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+이 프로젝트의 저작권은 SA K에게 있습니다.
+© 2021. SA K

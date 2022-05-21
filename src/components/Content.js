@@ -22,8 +22,8 @@ function Content() {
 
   const [play, { stop }] = useSound(meowSound, { volume: 0.3 });
 
-  let defaultSpeed = 1000; // 기본 초 속도
-  let defaultSec = 1800; // 기본 타이머 설정 시간(30분)
+  let defaultSpeed = 1000; // 기본 초 속도 (1000)
+  let defaultSec = 1800; // 기본 타이머 설정 시간 (1800)
 
   // 야옹 알림
   const cryCat = () => {
@@ -32,7 +32,7 @@ function Content() {
     setTimeout(() => {
       setCatImg(defaultCatImg);
       stop();
-    }, defaultSpeed);
+    }, 1000);
   };
 
   // 타이머 작동시키기
@@ -41,7 +41,7 @@ function Content() {
       if (totalSec > 0) {
         setTimeout(() => {
           setTotalSec(totalSec - 1);
-        }, 1000);
+        }, defaultSpeed);
         setMin(parseInt(totalSec / 60));
         setSec(parseInt(totalSec % 60));
       } else {

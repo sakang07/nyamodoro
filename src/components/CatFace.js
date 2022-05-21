@@ -6,7 +6,7 @@ import fishImg from "../assets/fish.png";
 
 function CatFace(props) {
   const handCursor = { cursor: `url('${handImg}'), grab` };
-  const fishCursor = { cursor: `url('${fishImg}'), auto` };
+  const fishCursor = { cursor: `url('${fishImg}'), pointer` };
 
   // 드래그시 따라오는 고스트 이미지 변경
   const handleOnDragStart = e => {
