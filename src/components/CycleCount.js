@@ -30,7 +30,6 @@ function CycleCount(props) {
     if (props.cycleNum > 0) {
       console.log(props.cycleNum + "사이클 완료");
       setItemArr([randomItemArr[randomNum], ...itemArr]);
-      // 아이템 추가되는 순서 역순으로 추가되게 구현할차례
     }
   }, [props.cycleNum]);
 

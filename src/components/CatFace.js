@@ -4,6 +4,7 @@ import "../style/CatFace.scss";
 import handCursor from "../assets/hand.png";
 
 function CatFace(props) {
+  // 드래그시 따라오는 고스트 이미지 변경
   const handleOnDragStart = e => {
     const img = document.createElement("img");
     img.src = handCursor;
@@ -18,7 +19,7 @@ function CatFace(props) {
         className='default'
         onClick={props.onClick}
         onDragStart={handleOnDragStart}
-        onDragEnd={props.onDrag}
+        onDragEnd={props.onDragEnd}
       >
         <img
           src={props.catFaceState}

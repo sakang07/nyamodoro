@@ -5,19 +5,16 @@ import onImg from "../assets/on.png";
 import offImg from "../assets/off.png";
 
 function Header() {
-  const initialStyle = { backgroundImage: `url('${offImg}')` };
-  const finalStyle = { backgroundImage: `url('${onImg}')` };
+  const offBtn = { backgroundImage: `url('${offImg}')` };
+  const onBtn = { backgroundImage: `url('${onImg}')` };
 
-  const [feed, setFeed] = useState(initialStyle);
-  const [act, setAct] = useState("off");
+  const [isOn, setIsOn] = useState(false);
 
-  const fnClick = () => {
-    if (act === "off") {
-      setAct("on");
-      setFeed(finalStyle);
+  const handleAuto = () => {
+    if (!isOn) {
+      setIsOn(true);
     } else {
-      setAct("off");
-      setFeed(initialStyle);
+      setIsOn(false);
     }
   };
 
@@ -26,7 +23,7 @@ function Header() {
       <h1 className='blind'>nyamodoro timer</h1>
 
       <div className='btn_area'>
-        <button type='button' style={feed} onClick={fnClick}>
+        <button type='button' style={isOn ? onBtn : offBtn} onClick={handleAuto}>
           <span>자동 급식기</span>
         </button>
       </div>

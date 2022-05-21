@@ -11,27 +11,32 @@ import sleepCatImg from "../assets/cat_sleep.png";
 import meowSound from "../assets/meow.ogg";
 
 function Content() {
-  const [catFace, setCatFace] = useState(defaultCatImg);
+  const [catImg, setCatImg] = useState(defaultCatImg);
   const [isRun, setIsRun] = useState(false);
-  const [isRest, setIsRest] = useState(false); // 휴식시간 여부 상태
+  const [isRest, setIsRest] = useState(false);
 
   const [totalSec, setTotalSec] = useState(0);
   const [min, setMin] = useState(0);
   const [sec, setSec] = useState(0);
   const [cycle, setCycle] = useState(0);
-  const [playAlarm, { stop }] = useSound(meowSound);
 
+  const [play, { stop }] = useSound(meowSound, { volume: 0.3 });
+
+  let defaultSpeed = 1000; // 기본 초 속도
+  let defaultSec = 1800; // 기본 타이머 설정 시간(30분)
+
+  // 야옹 알림
   const cryCat = () => {
-    setCatFace(cryCatImg);
-    playAlarm();
+    setCatImg(cryCatImg);
+    play();
     setTimeout(() => {
-      setCatFace(defaultCatImg);
+      setCatImg(defaultCatImg);
       stop();
-    }, 1000);
+    }, defaultSpeed);
   };
 
+  // 타이머 작동시키기
   useEffect(() => {
-    // 타이머 작동시키기
     if (isRun) {
       if (totalSec > 0) {
         setTimeout(() => {
@@ -51,8 +56,8 @@ function Content() {
     }
   }, [isRun, totalSec]);
 
+  // 타이머가 5분 남았을 때 휴식상태로 전환
   useEffect(() => {
-    // 타이머가 5분 남았을 때 휴식상태로 전환
     if (min === 5) {
       if (!isRest) {
         setIsRest(true);
@@ -62,31 +67,29 @@ function Content() {
   }, [min]);
 
   const handleStartTimer = () => {
-    // 타이머가 작동하지 않고 있을 때
     if (!isRun) {
-      setIsRun(true); // 타이머의 상태를 작동중으로 변경
-      if (catFace !== sleepCatImg) {
-        setTotalSec(1800);
-      } // 타이머를 1800초(30분으로 세팅)
-      cryCat(); // 야옹
+      setIsRun(true);
+      if (catImg !== sleepCatImg) {
+        setTotalSec(defaultSec);
+      }
+      cryCat();
     }
   };
 
   const handleSnoozeTimer = () => {
     if (isRun) {
-      // 타이머가 작동중일 때
       setIsRun(false);
-      setCatFace(sleepCatImg);
+      setCatImg(sleepCatImg);
     }
   };
 
   return (
     <section id='contentBox'>
       <CatFace
-        catFaceState={catFace}
+        catFaceState={catImg}
         timerState={isRun}
         onClick={handleStartTimer}
-        onDrag={handleSnoozeTimer}
+        onDragEnd={handleSnoozeTimer}
       />
       <Time restState={isRest} minNum={min} secNum={sec} />
       <CycleCount cycleNum={cycle} />
