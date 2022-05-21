@@ -1,23 +1,17 @@
 // App.scss
 // 220119
 
-@import './style/common/mixin', './style/common/variable';
+@import "./style/common/mixin", "./style/common/variable";
 
 .App {
-  width: 100%; height: 100%; 
+  width: 100%;
+  height: 100%;
   background-color: #d8dce1;
 }
 
 .container {
-  width: 100%; max-width: 400px; height: 100%;
+  width: 100%;
+  max-width: 400px;
+  height: 100%;
   padding: 20px 14px;
 }
-
-
-// /* ======================= handHelds ======================= */
-
-// @include handhelds() {
-//   .App {
-//     @include vw(height, 600, 600);
-//   }
-// }

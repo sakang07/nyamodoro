@@ -87,7 +87,7 @@ function Content() {
     <section id='contentBox'>
       <CatFace
         catFaceState={catImg}
-        timerState={isRun}
+        timerIsRun={isRun}
         onClick={handleStartTimer}
         onDragEnd={handleSnoozeTimer}
       />
