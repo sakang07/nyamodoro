@@ -58,7 +58,7 @@ function Content() {
 
   // 타이머가 5분 남았을 때 휴식상태로 전환
   useEffect(() => {
-    if (min === 5) {
+    if (min === 4) {
       if (!isRest) {
         setIsRest(true);
         cryCat();
