@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from "react";
-import useSound from "use-sound";
-import CatFace from "./CatFace";
-import Time from "./Time";
-import CycleCount from "./CycleCount";
-import "../style/Content.scss";
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import useSound from 'use-sound';
+import CatFace from './CatFace';
+import Time from './Time';
+import CycleCount from './CycleCount';
+import { CAT_IMG, SOUND } from '../constants/url';
 
-import defaultCatImg from "../assets/cat_default.png";
-import cryCatImg from "../assets/cat_cry.png";
-import sleepCatImg from "../assets/cat_sleep.png";
-import meowSound from "../assets/meow.ogg";
+const StyledSection = styled.section`
+  width: 100%;
+  height: auto;
+`;
 
 function Content() {
-  const [catImg, setCatImg] = useState(defaultCatImg);
+  const [catImg, setCatImg] = useState(CAT_IMG.DEFAULT);
   const [isRun, setIsRun] = useState(false);
   const [isRest, setIsRest] = useState(false);
 
@@ -20,17 +21,17 @@ function Content() {
   const [sec, setSec] = useState(0);
   const [cycle, setCycle] = useState(0);
 
-  const [play, { stop }] = useSound(meowSound, { volume: 0.3 });
+  const [play, { stop }] = useSound(SOUND.MEOW, { volume: 0.3 });
 
-  let defaultSpeed = 1000; // 기본 초 속도 (1000)
-  let defaultSec = 1800; // 기본 타이머 설정 시간 (1800)
+  const DEFAULT_SPEED = 1000; // 기본 초 속도 (1000)
+  const DEFAULT_SEC = 1800; // 기본 타이머 설정 시간 (1800)
 
   // 야옹 알림
   const cryCat = () => {
-    setCatImg(cryCatImg);
+    setCatImg(CAT_IMG.CRY);
     play();
     setTimeout(() => {
-      setCatImg(defaultCatImg);
+      setCatImg(CAT_IMG.DEFAULT);
       stop();
     }, 1000);
   };
@@ -41,9 +42,9 @@ function Content() {
       if (totalSec > 0) {
         setTimeout(() => {
           setTotalSec(totalSec - 1);
-        }, defaultSpeed);
-        setMin(parseInt(totalSec / 60));
-        setSec(parseInt(totalSec % 60));
+        }, DEFAULT_SPEED);
+        setMin(parseInt(totalSec / 60, 10));
+        setSec(parseInt(totalSec % 60, 10));
       } else {
         // 타이머가 0이 되면 초기화
         setIsRun(false);
@@ -69,8 +70,8 @@ function Content() {
   const handleStartTimer = () => {
     if (!isRun) {
       setIsRun(true);
-      if (catImg !== sleepCatImg) {
-        setTotalSec(defaultSec);
+      if (catImg !== CAT_IMG.SLEEP) {
+        setTotalSec(DEFAULT_SEC);
       }
       cryCat();
     }
@@ -79,21 +80,21 @@ function Content() {
   const handleSnoozeTimer = () => {
     if (isRun) {
       setIsRun(false);
-      setCatImg(sleepCatImg);
+      setCatImg(CAT_IMG.SLEEP);
     }
   };
 
   return (
-    <section id='contentBox'>
+    <StyledSection>
       <CatFace
         catFaceState={catImg}
         timerIsRun={isRun}
         onClick={handleStartTimer}
         onDragEnd={handleSnoozeTimer}
       />
-      <Time restState={isRest} minNum={min} secNum={sec} />
+      <Time isRest={isRest} minNum={min} secNum={sec} />
       <CycleCount cycleNum={cycle} />
-    </section>
+    </StyledSection>
   );
 }
 

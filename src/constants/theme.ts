@@ -1,0 +1,15 @@
+export const COLOR = {
+  PRIMARY: '#c30e2f',
+  BROWN: '#4d3c3b',
+  MINT: '#6ab29a',
+  SKYBLUE: '#94c6e1',
+  PALE: '#f3ebe0',
+  WHITE: '#fff',
+  GRAY_01: '#eee',
+  GRAY_02: '#ccc',
+  GRAY_03: '#aaa',
+  GRAY_04: '#777',
+  DEEP_GRAY: '#505050',
+  BLACK_01: '#333',
+  BLACK_02: '#171717',
+};
